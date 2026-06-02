@@ -1,0 +1,89 @@
+{
+  "type": "FeatureCollection",
+  "name": "jalur_evakuasi",
+  "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "name": "Jalur Evakuasi Utara",
+        "direction": "Menuju Jl. Pelabuhan Ratu",
+        "length_km": 1.2,
+        "capacity": 2000,
+        "status": "Aktif & Terverifikasi",
+        "description": "Jalur utama evakuasi ke arah utara"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.560, -6.995],
+          [106.555, -6.990],
+          [106.548, -6.985],
+          [106.540, -6.980]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "name": "Jalur Evakuasi Selatan",
+        "direction": "Menuju Pantai Pelabuhan Ratu",
+        "length_km": 1.6,
+        "capacity": 1500,
+        "status": "Aktif & Terverifikasi",
+        "description": "Jalur evakuasi ke arah selatan ke pantai"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.560, -6.995],
+          [106.558, -7.002],
+          [106.552, -7.010],
+          [106.545, -7.015]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "name": "Jalur Evakuasi Timur",
+        "direction": "Menuju Jl. Raya Cisolok",
+        "length_km": 2.0,
+        "capacity": 1800,
+        "status": "Aktif & Terverifikasi",
+        "description": "Jalur evakuasi ke arah timur"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.560, -6.995],
+          [106.570, -6.998],
+          [106.580, -6.995]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "name": "Jalur Evakuasi Barat",
+        "direction": "Menuju Jl. Raya Sukabumi",
+        "length_km": 1.8,
+        "capacity": 1700,
+        "status": "Aktif & Terverifikasi",
+        "description": "Jalur evakuasi ke arah barat"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.560, -6.995],
+          [106.548, -6.992],
+          [106.535, -6.990]
+        ]
+      }
+    }
+  ]
+}

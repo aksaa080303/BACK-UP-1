@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIGAP RATU — WebGIS Platform PLTU Pelabuhan Ratu</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Leaflet.js Map Library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+    <!-- Project Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ==================== LANDING PAGE ==================== -->
+    <div id="landing">
+      <!-- NAVBAR -->
+      <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>
+          <span class="logo-text">SIGAP RATU</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#fitur">Fitur</a></li>
+          <li><a href="#mengapa">Tentang</a></li>
+          <li>
+            <a href="#" onclick="openGIS()" class="nav-cta"
+              ><i class="fas fa-map"></i> Buka Peta</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- HERO SECTION -->
+      <section class="hero" id="home">
+        <!-- Animated Background Scene -->
+        <div class="hero-scene">
+          <svg
+            viewBox="0 0 1440 900"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <!-- Gradients -->
+            <defs>
+              <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop
+                  offset="0%"
+                  style="stop-color: #0a3d2e; stop-opacity: 1"
+                />
+                <stop
+                  offset="60%"
+                  style="stop-color: #1a6b4a; stop-opacity: 1"
+                />
+                <stop
+                  offset="100%"
+                  style="stop-color: #134e3a; stop-opacity: 1"
+                />
+              </linearGradient>
+              <linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop
+                  offset="0%"
+                  style="stop-color: #0d4f3a; stop-opacity: 0.9"
+                />
+                <stop
+                  offset="100%"
+                  style="stop-color: #083529; stop-opacity: 0.9"
+                />
+              </linearGradient>
+              <linearGradient id="smoke" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" style="stop-color: #aaa; stop-opacity: 0.4" />
+                <stop offset="100%" style="stop-color: #aaa; stop-opacity: 0" />
+              </linearGradient>
+              <radialGradient id="glow1" cx="60%" cy="40%">
+                <stop
+                  offset="0%"
+                  style="stop-color: #10b981; stop-opacity: 0.15"
+                />
+                <stop
+                  offset="100%"
+                  style="stop-color: #10b981; stop-opacity: 0"
+                />
+              </radialGradient>
+            </defs>
+            <!-- Background -->
+            <rect width="1440" height="900" fill="url(#sky)" />
+            <ellipse cx="900" cy="350" rx="450" ry="350" fill="url(#glow1)" />
+            <!-- Hills background -->
+            <ellipse
+              cx="1100"
+              cy="620"
+              rx="450"
+              ry="260"
+              fill="#0d4a32"
+              opacity="0.9"
+            />
+            <ellipse
+              cx="300"
+              cy="680"
+              rx="380"
+              ry="200"
+              fill="#0a3d28"
+              opacity="0.85"
+            />
+            <ellipse
+              cx="700"
+              cy="720"
+              rx="500"
+              ry="180"
+              fill="#0b4230"
+              opacity="0.7"
+            />
+            <!-- Water/Sea -->
+            <rect
+              x="0"
+              y="700"
+              width="1440"
+              height="200"
+              fill="url(#water)"
+              rx="0"
+            />
+            <ellipse
+              cx="720"
+              cy="700"
+              rx="750"
+              ry="40"
+              fill="#0d5040"
+              opacity="0.6"
+            />
+            <!-- Industrial building -->
+            <rect
+              x="680"
+              y="500"
+              width="220"
+              height="200"
+              fill="#0e3d28"
+              stroke="#1a6b4a"
+              stroke-width="1.5"
+            />
+            <rect
+              x="700"
+              y="520"
+              width="30"
+              height="60"
+              fill="#0a2e1f"
+              stroke="#154a32"
+              stroke-width="1"
+            />
+            <rect
+              x="740"
+              y="520"
+              width="30"
+              height="60"
+              fill="#0a2e1f"
+              stroke="#154a32"
+              stroke-width="1"
+            />
+            <rect
+              x="800"
+              y="530"
+              width="60"
+              height="50"
+              fill="#0a2e1f"
+              stroke="#154a32"
+              stroke-width="1"
+            />
+            <rect
+              x="860"
+              y="480"
+              width="30"
+              height="220"
+              fill="#0d3822"
+              stroke="#154a32"
+              stroke-width="1"
+            />
+            <!-- Chimneys -->
+            <rect
+              x="730"
+              y="360"
+              width="28"
+              height="170"
+              rx="3"
+              fill="#1a4535"
+              stroke="#2a7a55"
+              stroke-width="1.5"
+            />
+            <rect
+              x="780"
+              y="380"
+              width="22"
+              height="155"
+              rx="3"
+              fill="#1a4535"
+              stroke="#2a7a55"
+              stroke-width="1.5"
+            />
+            <rect
+              x="830"
+              y="340"
+              width="32"
+              height="185"
+              rx="3"
+              fill="#1a4535"
+              stroke="#2a7a55"
+              stroke-width="1.5"
+            />
+            <rect
+              x="890"
+              y="370"
+              width="24"
+              height="165"
+              rx="3"
+              fill="#1a4535"
+              stroke="#2a7a55"
+              stroke-width="1.5"
+            />
+            <!-- Chimney tops - orange/red stripes -->
+            <rect
+              x="730"
+              y="360"
+              width="28"
+              height="18"
+              rx="2"
+              fill="#c84b11"
+            />
+            <rect
+              x="730"
+              y="385"
+              width="28"
+              height="10"
+              rx="0"
+              fill="#e05d1a"
+              opacity="0.7"
+            />
+            <rect
+              x="830"
+              y="340"
+              width="32"
+              height="20"
+              rx="2"
+              fill="#c84b11"
+            />
+            <rect
+              x="830"
+              y="368"
+              width="32"
+              height="10"
+              rx="0"
+              fill="#e05d1a"
+              opacity="0.7"
+            />
+            <rect
+              x="780"
+              y="380"
+              width="22"
+              height="16"
+              rx="2"
+              fill="#c84b11"
+            />
+            <rect
+              x="890"
+              y="370"
+              width="24"
+              height="16"
+              rx="2"
+              fill="#c84b11"
+            />
+            <!-- Smoke clouds -->
+            <ellipse cx="744" cy="345" rx="22" ry="18" fill="url(#smoke)" />
+            <ellipse
+              cx="744"
+              cy="325"
+              rx="18"
+              ry="15"
+              fill="url(#smoke)"
+              opacity="0.7"
+            />
+            <ellipse
+              cx="746"
+              cy="305"
+              rx="14"
+              ry="12"
+              fill="url(#smoke)"
+              opacity="0.4"
+            />
+            <ellipse cx="846" cy="325" rx="25" ry="20" fill="url(#smoke)" />
+            <ellipse
+              cx="848"
+              cy="300"
+              rx="20"
+              ry="17"
+              fill="url(#smoke)"
+              opacity="0.7"
+            />
+            <ellipse
+              cx="791"
+              cy="365"
+              rx="18"
+              ry="14"
+              fill="url(#smoke)"
+              opacity="0.6"
+            />
+            <ellipse
+              cx="902"
+              cy="355"
+              rx="18"
+              ry="14"
+              fill="url(#smoke)"
+              opacity="0.6"
+            />
+            <!-- River -->
+            <path
+              d="M 500 750 Q 600 680 720 700 Q 840 720 960 700 Q 1080 680 1200 730"
+              stroke="#1a7a55"
+              stroke-width="45"
+              fill="none"
+              opacity="0.5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M 520 755 Q 620 685 730 705 Q 850 722 965 705"
+              stroke="#25a06a"
+              stroke-width="15"
+              fill="none"
+              opacity="0.35"
+              stroke-linecap="round"
+            />
+            <!-- Grid lines (digital effect) -->
+            <g opacity="0.08" stroke="#10b981" stroke-width="0.5">
+              <line x1="0" y1="200" x2="1440" y2="200" />
+              <line x1="0" y1="400" x2="1440" y2="400" />
+              <line x1="0" y1="600" x2="1440" y2="600" />
+              <line x1="300" y1="0" x2="300" y2="900" />
+              <line x1="600" y1="0" x2="600" y2="900" />
+              <line x1="900" y1="0" x2="900" y2="900" />
+              <line x1="1200" y1="0" x2="1200" y2="900" />
+            </g>
+            <!-- Stars/particles -->
+            <circle cx="200" cy="150" r="1.5" fill="#6ee7b7" opacity="0.6" />
+            <circle cx="350" cy="100" r="1" fill="#6ee7b7" opacity="0.4" />
+            <circle cx="500" cy="180" r="1.5" fill="#6ee7b7" opacity="0.5" />
+            <circle cx="1100" cy="120" r="1.5" fill="#6ee7b7" opacity="0.6" />
+            <circle cx="1250" cy="200" r="1" fill="#6ee7b7" opacity="0.4" />
+            <circle cx="1350" cy="80" r="1.5" fill="#6ee7b7" opacity="0.5" />
+            <!-- Warning zone ring -->
+            <circle
+              cx="820"
+              cy="590"
+              r="80"
+              fill="none"
+              stroke="#ef4444"
+              stroke-width="1.5"
+              stroke-dasharray="6 4"
+              opacity="0.4"
+            />
+            <circle
+              cx="820"
+              cy="590"
+              r="130"
+              fill="none"
+              stroke="#fbbf24"
+              stroke-width="1"
+              stroke-dasharray="4 6"
+              opacity="0.25"
+            />
+          </svg>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-circle"></i>
+            Platform WebGIS Aktif — Real-time Monitoring
+          </div>
+          <h1>Selamat Datang di<br /><span>SIGAP RATU</span></h1>
+          <p>
+            Peta interaktif untuk risk mapping, jalur evakuasi, dan monitoring
+            area PLTU Pelabuhan Ratu. Teknologi pemetaan digital modern untuk
+            keselamatan dan efisiensi operasional.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-hero" onclick="openGIS()">
+              <i class="fas fa-map-marked-alt"></i>
+              Jelajahi Peta Area
+            </button>
+            <button class="btn-hero-ghost">
+              <i class="fas fa-play-circle"></i>
+              Lihat Demo
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">5</div>
+            <div class="hero-stat-label">Zona Risiko</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">12</div>
+            <div class="hero-stat-label">Jalur Evakuasi</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">8</div>
+            <div class="hero-stat-label">Titik Kumpul</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">24/7</div>
+            <div class="hero-stat-label">Monitoring</div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+          <i class="fas fa-chevron-down"></i>
+          Scroll
+        </div>
+      </section>
+
+      <!-- FITUR UTAMA SECTION -->
+      <section class="features-section section" id="fitur">
+        <div class="section-header reveal">
+          <span class="section-tag"
+            ><i class="fas fa-layer-group"></i> Fitur Platform</span
+          >
+          <h2>Fitur Utama</h2>
+          <p>
+            Area PLTU memiliki potensi risiko tinggi seperti kebakaran, ledakan,
+            dan paparan bahan berbahaya. <strong>SIGAP RATU</strong> membantu
+            meminimalisir risiko tersebut dengan teknologi pemetaan digital guna
+            mendukung keselamatan dan efisiensi.
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feat-card reveal reveal-delay-1">
+            <div class="feat-icon"><i class="fas fa-map"></i></div>
+            <h3>Peta Interaktif</h3>
+            <p>
+              Lihat dan eksplorasi area PLTU secara detail dengan layer risk
+              mapping, titik kumpul, dan jalur evakuasi yang dapat
+              dikustomisasi.
+            </p>
+            <button class="feat-btn" onclick="openGIS()">
+              <i class="fas fa-arrow-right"></i> Buka Peta
+            </button>
+          </div>
+          <div class="feat-card reveal reveal-delay-2">
+            <div class="feat-icon"><i class="fas fa-download"></i></div>
+            <h3>Download Jalur Evakuasi</h3>
+            <p>
+              Unduh jalur evakuasi dalam format GPX untuk navigasi offline
+              menggunakan perangkat GPS atau smartphone di lapangan.
+            </p>
+            <button class="feat-btn-ghost" onclick="downloadGPX()">
+              <i class="fas fa-file-download"></i> Download GPX
+            </button>
+          </div>
+          <div class="feat-card reveal reveal-delay-3">
+            <div class="feat-icon"><i class="fas fa-cloud-sun"></i></div>
+            <h3>Info Cuaca Real-time</h3>
+            <p>
+              Kondisi cuaca terkini di area PLTU untuk kesiapsiagaan operasional
+              — angin, kelembaban, suhu, dan visibilitas.
+            </p>
+            <button class="feat-btn-ghost">
+              <i class="fas fa-thermometer-half"></i> Lihat Cuaca
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY SIGAP RATU SECTION -->
+      <section class="why-section section" id="mengapa">
+        <div class="why-grid">
+          <div class="why-left reveal">
+            <span class="section-tag"
+              ><i class="fas fa-shield-alt"></i> Keselamatan Prioritas</span
+            >
+            <h2>Mengapa SIGAP RATU?</h2>
+            <p>
+              Area PLTU memiliki potensi risiko tinggi seperti kebakaran,
+              ledakan, dan paparan bahan berbahaya. SIGAP RATU membantu
+              meminimalisir risiko tersebut dengan teknologi pemetaan digital
+              guna mendukung keselamatan dan efisiensi operasional secara
+              menyeluruh.
+            </p>
+            <div class="risk-tags">
+              <span class="risk-tag danger"
+                ><i class="fas fa-fire"></i> Risiko Kebakaran</span
+              >
+              <span class="risk-tag danger"
+                ><i class="fas fa-bomb"></i> Risiko Ledakan</span
+              >
+              <span class="risk-tag danger"
+                ><i class="fas fa-skull-crossbones"></i> Bahan Berbahaya</span
+              >
+              <span class="risk-tag"
+                ><i class="fas fa-hard-hat"></i> K3 & Keselamatan</span
+              >
+              <span class="risk-tag"
+                ><i class="fas fa-broadcast-tower"></i> Monitoring 24/7</span
+              >
+            </div>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div>
+                  <div class="stat-num">5</div>
+                  <div class="stat-label">Zona Risiko</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-route"></i></div>
+                <div>
+                  <div class="stat-num">12</div>
+                  <div class="stat-label">Jalur Evakuasi</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div>
+                  <div class="stat-num">8</div>
+                  <div class="stat-label">Titik Kumpul</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <div class="stat-num">3</div>
+                  <div class="stat-label">Area Terdampak</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="why-right reveal reveal-delay-2">
+            <div class="map-glow"></div>
+            <div class="map-preview-wrap">
+              <div class="map-preview-header">
+                <div class="map-preview-title">
+                  <i class="fas fa-satellite-dish"></i>
+                  Live Risk Map — PLTU Pelabuhan Ratu
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px">
+                  <div class="map-dot live"></div>
+                  <span
+                    style="font-size: 0.7rem; color: rgba(255, 255, 255, 0.6)"
+                    >LIVE</span
+                  >
+                </div>
+              </div>
+              <div id="preview-map"></div>
+              <div class="map-overlay-btn">
+                <button
+                  class="btn-hero"
+                  style="padding: 10px 24px; font-size: 0.85rem"
+                  onclick="openGIS()"
+                >
+                  <i class="fas fa-expand-alt"></i> Lihat Selengkapnya
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA SECTION -->
+      <section class="cta-section" id="cta">
+        <div class="cta-inner reveal">
+          <span
+            class="section-tag"
+            style="background: rgba(255, 255, 255, 0.1); color: #6ee7b7"
+          >
+            <i class="fas fa-rocket"></i> Mulai Sekarang
+          </span>
+          <h2>Siap Untuk Melihat Area<br />PLTU Pelabuhan Ratu?</h2>
+          <p>
+            Akses peta interaktif penuh dengan semua fitur monitoring, risk
+            mapping, dan jalur evakuasi — gratis dan real-time.
+          </p>
+          <button class="btn-hero" style="margin: 0 auto" onclick="openGIS()">
+            <i class="fas fa-map-marked-alt"></i>
+            Jelajahi Peta Sekarang
+          </button>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-inner">
+          <span class="footer-logo"
+            ><i class="fas fa-bolt"></i> SIGAP RATU</span
+          >
+          <span
+            >© 2025 Platform WebGIS PLTU Pelabuhan Ratu. Semua hak
+            dilindungi.</span
+          >
+          <span>Powered by Leaflet.js & OpenStreetMap</span>
+        </div>
+      </footer>
+    </div>
+    <!-- end #landing -->
+
+    <!-- ==================== GIS PAGE ==================== -->
+    <div id="gis-page">
+      <!-- Loading Screen -->
+      <div id="gis-loading">
+        <div class="loading-logo">
+          <div class="loading-logo-icon"><i class="fas fa-bolt"></i></div>
+          <div class="loading-logo-text">SIGAP RATU</div>
+        </div>
+        <div class="loading-bar-wrap">
+          <div class="loading-bar" id="load-bar"></div>
+        </div>
+        <div class="loading-text">Memuat WebGIS Platform...</div>
+      </div>
+
+      <!-- GIS Navbar -->
+      <div id="gis-nav">
+        <div class="gis-nav-logo">
+          <div class="gis-nav-logo-icon"><i class="fas fa-bolt"></i></div>
+          <div class="gis-nav-logo-text">SIGAP RATU</div>
+        </div>
+        <div class="gis-nav-center">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="gis-search"
+              placeholder="Cari lokasi atau zona..."
+            />
+          </div>
+          <div class="status-chip">
+            <div class="live-dot"></div>
+            PLTU Pelabuhan Ratu — LIVE
+          </div>
+        </div>
+        <div class="gis-nav-right">
+          <div class="status-chip" id="weather-chip">
+            <i class="fas fa-cloud-sun" style="color: #fbbf24"></i>
+            <span id="weather-text">28°C, Berawan</span>
+          </div>
+          <button class="btn-back" onclick="closeGIS()">
+            <i class="fas fa-arrow-left"></i> Kembali
+          </button>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div id="gis-sidebar">
+        <div class="sidebar-scroll">
+          <!-- Layers Section -->
+          <div class="sidebar-section">
+            <div class="sidebar-label">Layer Peta</div>
+            <div class="layer-item" onclick="toggleLayer('risk')">
+              <div class="layer-item-left">
+                <div class="layer-dot" style="background: #ef4444"></div>
+                <span class="layer-name">Zona Risiko</span>
+              </div>
+              <div class="toggle on" id="toggle-risk"></div>
+            </div>
+            <div class="layer-item" onclick="toggleLayer('evac')">
+              <div class="layer-item-left">
+                <div class="layer-dot" style="background: #3b82f6"></div>
+                <span class="layer-name">Jalur Evakuasi</span>
+              </div>
+              <div class="toggle on" id="toggle-evac"></div>
+            </div>
+            <div class="layer-item" onclick="toggleLayer('assembly')">
+              <div class="layer-item-left">
+                <div class="layer-dot" style="background: #10b981"></div>
+                <span class="layer-name">Titik Kumpul</span>
+              </div>
+              <div class="toggle on" id="toggle-assembly"></div>
+            </div>
+            <div class="layer-item" onclick="toggleLayer('facilities')">
+              <div class="layer-item-left">
+                <div class="layer-dot" style="background: #8b5cf6"></div>
+                <span class="layer-name">Fasilitas PLTU</span>
+              </div>
+              <div class="toggle on" id="toggle-facilities"></div>
+            </div>
+          </div>
+
+          <!-- Legend Section -->
+          <div class="sidebar-section">
+            <div class="sidebar-label">Legenda Risiko</div>
+            <div class="legend-item">
+              <div
+                class="legend-swatch"
+                style="
+                  background: rgba(239, 68, 68, 0.6);
+                  border: 1.5px solid #ef4444;
+                "
+              ></div>
+              Risiko Sangat Tinggi
+            </div>
+            <div class="legend-item">
+              <div
+                class="legend-swatch"
+                style="
+                  background: rgba(251, 191, 36, 0.6);
+                  border: 1.5px solid #fbbf24;
+                "
+              ></div>
+              Risiko Tinggi
+            </div>
+            <div class="legend-item">
+              <div
+                class="legend-swatch"
+                style="
+                  background: rgba(59, 130, 246, 0.5);
+                  border: 1.5px solid #3b82f6;
+                "
+              ></div>
+              Zona Buffer
+            </div>
+            <div class="legend-item">
+              <div
+                class="legend-swatch"
+                style="
+                  background: rgba(16, 185, 129, 0.5);
+                  border: 1.5px solid #10b981;
+                "
+              ></div>
+              Zona Aman / Titik Kumpul
+            </div>
+            <div class="legend-item">
+              <div
+                class="legend-swatch"
+                style="background: #3b82f6; height: 3px; margin-top: 4px"
+              ></div>
+              Jalur Evakuasi
+            </div>
+          </div>
+
+          <!-- Basemap Section -->
+          <div class="sidebar-section" style="border-bottom: none">
+            <div class="sidebar-label">Basemap</div>
+            <div class="layer-item" onclick="setBasemap('osm')">
+              <div class="layer-item-left">
+                <div
+                  class="layer-dot"
+                  style="background: #64748b; border-radius: 50%"
+                ></div>
+                <span class="layer-name" id="bm-osm" style="color: #6ee7b7"
+                  >OpenStreetMap</span
+                >
+              </div>
+            </div>
+            <div class="layer-item" onclick="setBasemap('satellite')">
+              <div class="layer-item-left">
+                <div
+                  class="layer-dot"
+                  style="background: #1e3a5f; border-radius: 50%"
+                ></div>
+                <span class="layer-name" id="bm-sat">Satelit (Esri)</span>
+              </div>
+            </div>
+            <div class="layer-item" onclick="setBasemap('topo')">
+              <div class="layer-item-left">
+                <div
+                  class="layer-dot"
+                  style="background: #4a7c59; border-radius: 50%"
+                ></div>
+                <span class="layer-name" id="bm-topo">Topografi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Container -->
+      <div id="gis-map"></div>
+
+      <!-- Map Control Buttons -->
+      <div
+        class="map-control-btn ctrl-locate"
+        onclick="locateUser()"
+        title="Lokasi Saya"
+      >
+        <i class="fas fa-crosshairs"></i>
+      </div>
+      <div
+        class="map-control-btn ctrl-fullscreen"
+        onclick="fitBounds()"
+        title="Reset View"
+      >
+        <i class="fas fa-compress-arrows-alt"></i>
+      </div>
+      <div
+        class="map-control-btn ctrl-export"
+        onclick="downloadGPX()"
+        title="Export GPX"
+      >
+        <i class="fas fa-download"></i>
+      </div>
+
+      <button
+        id="assistant-launcher"
+        class="assistant-launcher"
+        type="button"
+        aria-label="Buka SIGAP AI Assistant"
+        aria-expanded="false"
+      >
+        <span class="assistant-launcher-icon"
+          ><i class="fas fa-robot"></i
+        ></span>
+        <span class="assistant-launcher-label">SIGAP AI</span>
+      </button>
+
+      <!-- AI Assistant Panel -->
+      <div id="ai-assistant" class="assistant-panel hidden">
+        <div class="assistant-shell">
+          <div class="assistant-header">
+            <div class="assistant-header-left">
+              <div class="assistant-avatar">
+                <div class="assistant-avatar-inner">
+                  <i class="fas fa-brain"></i>
+                </div>
+                <div class="assistant-meta">
+                  <div class="assistant-title">SIGAP AI Assistant</div>
+                  <div class="assistant-subtitle">
+                    GIS & Risk Monitoring Support
+                  </div>
+                </div>
+              </div>
+              <div class="assistant-status">
+                <span class="assistant-status-dot"></span>
+                Operational
+              </div>
+            </div>
+            <div class="assistant-header-actions">
+              <button
+                type="button"
+                class="assistant-icon-btn assistant-minimize"
+                aria-label="Minimize panel"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+              <button
+                type="button"
+                class="assistant-icon-btn assistant-close"
+                aria-label="Close panel"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="assistant-body">
+            <div class="assistant-chat" id="assistant-chat">
+              <div class="assistant-message assistant-ai">
+                <div class="assistant-bubble">
+                  <div class="assistant-bubble-label">SIGAP AI</div>
+                  <p>
+                    Halo, saya siap membantu dengan kondisi zona, jalur
+                    evakuasi, dan navigasi operasional area PLTU Pelabuhan Ratu.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="assistant-quick-actions">
+              <button type="button" class="action-chip" data-action="klinik">
+                <i class="fas fa-hospital"></i> Klinik
+              </button>
+              <button
+                type="button"
+                class="action-chip"
+                data-action="zona-risiko"
+              >
+                <i class="fas fa-radiation-alt"></i> Zona Risiko
+              </button>
+              <button type="button" class="action-chip" data-action="shelter">
+                <i class="fas fa-house-chimney-medical"></i> Shelter
+              </button>
+              <button
+                type="button"
+                class="action-chip"
+                data-action="jalur-evakuasi"
+              >
+                <i class="fas fa-route"></i> Jalur Evakuasi
+              </button>
+              <button type="button" class="action-chip" data-action="cuaca">
+                <i class="fas fa-cloud-sun"></i> Cuaca
+              </button>
+              <button
+                type="button"
+                class="action-chip"
+                data-action="pos-keamanan"
+              >
+                <i class="fas fa-shield-alt"></i> POS Keamanan
+              </button>
+            </div>
+          </div>
+
+          <form id="assistant-form" class="assistant-input-area">
+            <textarea
+              id="assistant-input"
+              rows="1"
+              maxlength="320"
+              placeholder="Tanyakan kondisi area atau jalur evakuasi..."
+            ></textarea>
+            <div class="assistant-input-footer">
+              <span id="assistant-charcount">0 / 320</span>
+              <button
+                type="submit"
+                class="assistant-send"
+                aria-label="Kirim pesan"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Coordinate Bar -->
+      <div id="coord-bar">
+        <i class="fas fa-crosshairs" style="margin-right: 6px"></i>
+        <span id="coord-text">Arahkan kursor ke peta...</span>
+      </div>
+
+      <!-- Info Panel -->
+      <div id="info-panel">
+        <div class="info-panel-title">
+          <i class="fas fa-info-circle"></i> Info Zona
+        </div>
+        <div id="info-content"></div>
+      </div>
+    </div>
+    <!-- end #gis-page -->
+
+    <!-- Project JavaScript -->
+    <script src="js/script.js"></script>
+  </body>
+</html>

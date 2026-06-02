@@ -1,0 +1,55 @@
+{
+  "type": "FeatureCollection",
+  "name": "zona_risiko",
+  "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "name": "Zona Risiko Sangat Tinggi",
+        "level": "CRITICAL",
+        "radius_m": 500,
+        "description": "Area dalam radius 500m dari pusat PLTU dengan risiko tertinggi",
+        "akses": "Personel Terotorisasi Saja",
+        "risiko": ["Kebakaran", "Ledakan", "Gas Berbahaya"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.560, -6.995]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "name": "Zona Risiko Tinggi",
+        "level": "HIGH",
+        "radius_m": 1000,
+        "description": "Area dalam radius 500-1000m dari pusat PLTU",
+        "akses": "Dengan APD Lengkap",
+        "risiko": ["Paparan Bahan Berbahaya", "Radiasi Panas"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.560, -6.995]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "name": "Zona Buffer",
+        "level": "MEDIUM",
+        "radius_m": 1700,
+        "description": "Area pengawasan dan monitoring",
+        "akses": "Terbatas",
+        "risiko": ["Monitoring Area"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.560, -6.995]
+      }
+    }
+  ]
+}

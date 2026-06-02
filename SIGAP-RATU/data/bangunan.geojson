@@ -1,0 +1,109 @@
+{
+  "type": "FeatureCollection",
+  "name": "bangunan_fasilitas",
+  "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "name": "PLTU Pelabuhan Ratu",
+        "type": "Pembangkit Listrik",
+        "kapasitas": "1050 MW (3 x 350 MW)",
+        "bahan_bakar": "Batubara",
+        "status": "Operasional",
+        "risk_level": "SANGAT TINGGI",
+        "koordinat": "-6.995, 106.560"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.560, -6.995]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "name": "Gudang Bahan Bakar",
+        "type": "B3 Storage",
+        "kapasitas": "50000 ton",
+        "kategori": "Bahan Berbahaya",
+        "status": "Operasional",
+        "risk_level": "SANGAT TINGGI",
+        "koordinat": "-6.993, 106.558"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.558, -6.993]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "name": "Dermaga Batubara",
+        "type": "Pelabuhan & Unloading",
+        "kapasitas": "25000 ton/hari",
+        "material": "Batubara",
+        "status": "Operasional",
+        "risk_level": "TINGGI",
+        "koordinat": "-6.997, 106.563"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.563, -6.997]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "name": "Ruang Kontrol Utama",
+        "type": "Control Room",
+        "fungsi": "Monitoring dan Kontrol Operasi",
+        "staff": "50+ orang",
+        "status": "Operasional",
+        "risk_level": "SEDANG",
+        "koordinat": "-6.993, 106.564"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.564, -6.993]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "name": "Klinik PLTU",
+        "type": "Fasilitas Kesehatan",
+        "kapasitas": "100 bed",
+        "layanan": "P3K, Ambulans, Konsultasi",
+        "status": "Operasional",
+        "risk_level": "AMAN",
+        "koordinat": "-6.998, 106.556"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.556, -6.998]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "name": "Pos Keamanan",
+        "type": "Security & Emergency",
+        "staff": "24 jam",
+        "peralatan": "CCTV, Fire Extinguisher, AED",
+        "status": "Operasional",
+        "risk_level": "AMAN",
+        "koordinat": "-6.996, 106.555"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.555, -6.996]
+      }
+    }
+  ]
+}
